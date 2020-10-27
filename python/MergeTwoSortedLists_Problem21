@@ -10,38 +10,43 @@ class Solution(object):
         :type l2: ListNode
         :rtype: ListNode
         """
-        # not sth means empty
         # none means empty
-        
+        # not l1 return TRUE when l1 is empty, so l1 = []        
         if not l1: 
             return l2
         elif not l2:
             return l1
-        elif (not l1) and (not l2):
-            return None
+#        elif ((not l1) and (not l2)):
+#            return None
         else:
-            List = ListNode(0)
+            List = ListNode(0) # ListNode is a class that takes val=# as an input returns two attributes, List.val is a value, and List.next is a ListNode.
+# by convention, store initial and use to keep information as later referrence       
             newList = List
-            vary_l1 = l1 # by convention, use to keep information as referrence later
+            vary_l1 = l1  # no necessary in this case, but still good to have it
             vary_l2 = l2          
-            # at least one is not empty
+# at least one is not empty, meaning either both nonempty or one of them is empty
             while(vary_l1 or vary_l2): 
-                # when both nonempty
+# when both nonempty, only in this situation, we can compare values
                 if (vary_l1 and vary_l2):
                     if (vary_l1.val <= vary_l2.val):
                         newList.next = ListNode(vary_l1.val)
-                        newList = newList.next # otherwise only have the initial node and the final node
+# otherwise only have the initial node and the final node, will skip the middle step when going through the while-loop                   
+                        newList = newList.next 
+# chop the previous value that has been in comparison, recall it in order to go through while-loop  
                         vary_l1 = vary_l1.next  
                     else:
                         newList.next = ListNode(vary_l2.val)
                         newList = newList.next
                         vary_l2 = vary_l2.next
-                # for vary_l1 is empty        
+# if one of the ListNode is empty, then directly store the other ListNode   
                 elif (not vary_l1):
                     newList.next = vary_l2
-                    vary_l2 = None # otherweise it go through while loop
+# need to manually set the nonempty ListNode to empty after storing it in the newList, otherwise, it would go through while-loop and became infinite loop
+                    vary_l2 = None 
                 else:
                     newList.next = vary_l1
                     vary_l1 = None
+# needs to chop off the first ListNode.val, because that's 0                    
         return List.next
+ 
     
