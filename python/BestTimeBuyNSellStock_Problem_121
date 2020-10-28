@@ -1,0 +1,48 @@
+class Solution(object):
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        """
+        
+####################################   TIME OUT: Brute Force Method  ####################################  
+        # # store = []
+        # store= 0
+        # n = len(prices)
+        # for i in range(n-1):
+        #     for j in range(i+1,n):
+        #         # if (prices[i]<=prices[j]): 
+        #         #     store.append(prices[j]-prices[i])
+        #         if ((prices[j]-prices[i])>store): 
+        #             store = prices[j]-prices[i]
+        # if not store:
+        #     return 0
+        # else:
+        #     return store   
+################################################  End TIME OUT ################################################   
+
+#################################### use the idea of current value - min up the the current value  ############ 
+        if (len(prices)!=0): 
+            min = prices[0]
+            profit = []
+            for i in prices:
+                if i>=min:
+                    profit.append(i-min)
+                else:
+                    min = i
+            return max(profit)
+        else:
+          return max(profit)
+        
+###############################################   Simplified version  ######################################### 
+        if (len(prices)!=0): 
+            min = prices[0]
+            profit = 0
+            for i in prices:
+                if i>=min:
+                    profit = max(profit, i-min)
+                else:
+                    min = i
+            return profit
+        else:
+            return 0
