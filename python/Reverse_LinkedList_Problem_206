@@ -23,3 +23,33 @@ class Solution(object):
                 currentNode = nextNode
             
             return preNode
+            
+############################## break down method ############################## 
+        if (not head):
+            return head
+        else:
+# count the length of Linked List 
+            l1 = head
+            count = 0
+            while(l1):
+                l1=l1.next
+                count = count+1
+# store all the values from Linked list        
+            reverseValue = []
+            l2 = head
+            for i in range(count):
+                reverseValue.append(l2.val)
+                l2 = l2.next
+# create reverse ListnNode            
+            reverseNode = ListNode(reverseValue[count-1])
+            start = reverseNode # need to store the previous value, otherwise every step in the for-loop only stay in the current value.
+            for i in range(len(reverseValue)):
+                if count-(i+2)>=0:
+                    start.next = ListNode(reverseValue[count-(i+2)])
+                    start = start.next
+                else:
+                    start.next = None      
+            return reverseNode
+
+    
+               
