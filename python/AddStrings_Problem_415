@@ -1,0 +1,61 @@
+class Solution(object):
+    def addStrings(self, num1, num2):
+        """
+        :type num1: str
+        :type num2: str
+        :rtype: str
+        """
+    ################################################## Python Cheating Method ############################################   
+        # Str_num1 = int(num1)
+        # Str_num2 = int(num2)
+        # return str(Str_num1 + Str_num2) 
+        
+  ################################################## Real Python Method ##################################################     
+        n1 = len(num1)
+        n2 = len(num2)
+
+        divider = 0
+        Sum = []
+        while (n1>=1 and n2>=1):
+            digit1 = ord(num1[n1-1])-ord("0")
+# ord returns the unicode for string character, subtract "0" string to get the real value, because in the string, it's stored as 012...89.
+            digit2 = ord(num2[n2-1])-ord("0")
+            remainder = (digit1 + digit2 + divider)%10
+            Sum.append(str(remainder))
+            divider = (digit1 + digit2 + divider)//10 # or if remainder >9: divider = 1 \newline else: divider = 0
+            n1 = n1-1
+            n2 = n2-1 
+        while (divider ==1):
+            if (max(n1,n2)==0):
+                Sum.append(str(divider))
+                divider = 0
+
+            elif n1 >0:
+                for i in range(n1):
+                    remainder = (ord(num1[n1-(i+1)])-ord("0")+divider)%10
+                    Sum.append(str(remainder))
+                    divider = (ord(num1[n1-(i+1)])-ord("0")+divider)//10
+                n1 = 0
+            else:
+                for i in range(n2):
+                    remainder = (ord(num2[n2-(i+1)])-ord("0")+divider)%10
+                    Sum.append(str(remainder))
+                    divider = (ord(num2[n2-(i+1)])-ord("0")+divider)//10
+                n2 = 0
+
+
+        if (divider == 0 and max(n1,n2)>0):
+            if n1>0:
+                for i in range(n1):  
+                    Sum.append(num1[n1-(i+1)])
+                n1 = 0
+            if n2>0:
+                for i in range(n2):  
+                    Sum.append(num2[n2-(i+1)])
+                n2 = 0
+
+        newSum = []
+        s1 = len(Sum)
+        for i in range(s1):
+            newSum.append(Sum[s1-(i+1)])
+        return("".join(newSum))
