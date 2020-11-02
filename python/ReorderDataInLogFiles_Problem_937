@@ -1,0 +1,30 @@
+class Solution(object):
+    def reorderLogFiles(self, logs):
+        """
+        :type logs: List[str]
+        :rtype: List[str]
+        """
+####################   seperate letter and digit into two lists   ####################      
+        letter = []
+        digit = []
+        rearrange_letter = []
+        for i in range(len(logs)):
+            if ord(logs[i].split(' ')[1][0]) not in range(ord("0"), ord("9")+1):
+                letter.append(logs[i])
+            else:
+                digit.append(logs[i])
+                
+#################### cleaning the letter list into a comparison level ######################
+        comparison = []
+        for i in range(len(letter)):
+            temp = letter[i].split(' ')[1:]
+            comparison.append(temp)
+          
+################# do the comparison for letter list and store into a new list###############3
+        while (comparison):
+            ind = comparison.index(max(comparison))
+            rearrange_letter.append(letter[ind])
+            comparison.remove(max(comparison))
+            letter.remove(letter[ind])
+
+        return(rearrange_letter[::-1]+digit)
