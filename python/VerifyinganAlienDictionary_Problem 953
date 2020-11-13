@@ -1,0 +1,49 @@
+class Solution(object):
+    def isAlienSorted(self, words, order):
+        """
+        :type words: List[str]
+        :type order: str
+        :rtype: bool
+        """
+##### Define a new dictionary base on the given order
+#        dic ={}
+#        for i in range(len(order)):
+#            dic[order[i]]= i
+            
+#         for i in range(len(words)-1):
+#             w1 = words[i]
+#             w2 = words[i+1]
+#             for j in range(min(len(w1), len(w2))):
+#                 if w1[j] != w2[j]:
+#                     if dic[w1[j]]>dic[w2[j]]:
+#                         return False
+#                     break # this means escape current environment, say if j = 0, if w1[0] != w2[0] and dic[w1[j]]<= dic[w2[j]], then won't run j = 1,2...
+#             else: # this line only runs when break happening. If for -loop run all the way through, j = 1,2,3,4..., else statment won't run.
+#                 if len(w1) >len(w2):
+#                     return False
+
+#         return True
+########################## using a comparison function ##########################
+
+# defined a dictionary with the key(c) and value (i), use for proper comparison of letters.
+        dictionary ={c: i for i,c in enumerate(order)}
+
+        def word_compare(word1, word2, dictionary):
+            for i in range(min(len(word1), len(word2))):
+                if dictionary[word1[i]]>dictionary[word2[i]]:
+                    return(False) # usually write the false one first
+                elif dictionary[word1[i]]<dictionary[word2[i]]:
+                    return(True)
+                #else: # continue the for loop
+
+        #after running through the for-loop of the min. length
+            if len(word1)> len(word2):
+                return(False)
+            else:
+                return(True)
+            
+        for i in range(len(words)-1):
+            if (not word_compare(words[i], words[i+1], dictionary)):
+                return(False)
+            
+        return(True)
