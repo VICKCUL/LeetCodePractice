@@ -1,0 +1,66 @@
+# Definition for singly-linked list.
+# class ListNode(object):
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution(object):
+    def addTwoNumbers(self, l1, l2):
+        """
+        :type l1: ListNode
+        :type l2: ListNode
+        :rtype: ListNode
+        """
+        temp_l1 = l1
+        temp_l2 = l2
+# count each ListNode length
+        count_l1 = 0
+        count_l2 = 0
+        while (temp_l1 or temp_l2):
+            if temp_l1:
+                temp_l1 = temp_l1.next
+                count_l1 = count_l1+1
+            if temp_l2:
+                temp_l2 = temp_l2.next
+                count_l2 = count_l2+1
+# store each ListNode values               
+        maxcount = max(count_l1, count_l2)
+        store_l1 = l1
+        store_l2 = l2
+        val_l1 = []
+        val_l2 = []
+        for i in range(maxcount):
+            if store_l1:
+                val_l1.insert(0, store_l1.val)
+                store_l1 = store_l1.next
+            if store_l2:
+                val_l2.insert(0, store_l2.val)
+                store_l2 = store_l2.next
+# adding 0 in the front of the shorter ListNode
+        while (min(len(val_l1), len(val_l2)) < maxcount):
+            if len(val_l1) < maxcount:
+                val_l1.insert(0,0)
+            if len(val_l2) < maxcount:
+                val_l2.insert(0,0)
+# adding the values            
+        addition = []
+        divider = 0
+        for i in range(maxcount):
+            Sum = divider + (val_l2[maxcount-(i+1)] + val_l1[maxcount-(i+1)])
+            if Sum > 9:
+                addition.append(Sum%10)
+                divider = Sum//10 # divider = 1
+            else:
+                addition.append(Sum)
+                divider = Sum//10 # divider = 0
+# in case at the end need to add 1 in the front   
+        if divider ==1:
+            addition.append(divider)
+                      
+# put in in the ListNode form                
+        list_sum = ListNode(addition[0])
+        list_sum_copy = list_sum
+        for i in range(len(addition)):
+            list_sum_copy.next= ListNode(addition[i])
+            list_sum_copy = list_sum_copy.next
+            
+        return list_sum.next
