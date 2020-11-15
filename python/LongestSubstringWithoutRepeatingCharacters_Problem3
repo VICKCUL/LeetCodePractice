@@ -1,0 +1,17 @@
+class Solution(object):
+    def lengthOfLongestSubstring(self, s):
+        """
+        :type s: str
+        :rtype: int
+        """
+        dic ={} # use dictionary for unique key assignment.
+        length = 0
+        repeat = 0
+        for i in range(len(s)):
+            if s[i] not in dic:
+                length = max(length, i-repeat+1) # distance of current to repeat place.
+            else:
+                length = max(length, min(i-dic[s[i]], i-repeat+1)) # use distance of current to previous self-location keep the length.
+                repeat = max(dic[s[i]]+1, repeat) # to avoid "aabaab" case, when i = 2nd 'b' location, repeat should be the later 'a', which is optained in the previous step when i = 4
+            dic[s[i]] = i
+        return length 
