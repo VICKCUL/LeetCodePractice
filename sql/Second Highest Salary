@@ -1,0 +1,13 @@
+####### Method 1
+# Select
+# (Select Distinct Salary #As SecondHighestSalary
+# From Employee
+# Order by Salary Desc
+# Limit 1 Offset 1 )
+# As SecondHighestSalary
+
+####### Method 2
+SELECT MAX(Salary) AS SecondHighestSalary
+FROM Employee
+WHERE Salary < (SELECT MAX(Salary) FROM Employee)
+
