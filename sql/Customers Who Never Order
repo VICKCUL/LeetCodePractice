@@ -1,0 +1,4 @@
+Select table1.Name As Customers
+From Customers as table1 left join Orders as table2
+On table1.Id = table2.CustomerId
+Where table2.CustomerId is Null
