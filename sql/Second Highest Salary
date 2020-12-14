@@ -11,3 +11,12 @@ SELECT MAX(Salary) AS SecondHighestSalary
 FROM Employee
 WHERE Salary < (SELECT MAX(Salary) FROM Employee)
 
+####### Method 3
+Select
+Ifnull(
+(select distinct Salary
+from Employee
+Order by Salary Desc
+Limit 1 Offset 1), null)
+As SecondHighestSalary
+
