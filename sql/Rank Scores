@@ -1,0 +1,18 @@
+####### use dense_rank() over() function
+# SELECT
+# 	v,
+# 	DENSE_RANK() OVER (
+# 		ORDER BY v
+# 	) my_dense_rank,
+# 	RANK() OVER (
+# 		ORDER BY v
+# 	) my_rank
+# FROM
+# 	sales.dense_rank_demo;
+
+Select
+  Score,
+  DENSE_RANK() OVER(
+      ORDER BY Score DESC
+) "Rank"
+From Scores
