@@ -1,0 +1,14 @@
+# Write your MySQL query statement below
+# delete table1
+# # Select table1.Id, table1.Email
+# From Person as table1 join Person as table2
+# Where table1.Email = table2.Email and table1.Id>table2.Id
+
+# delete table2
+# # Select table1.Id, table1.Email
+# From Person as table1 join Person as table2
+# Where table1.Email = table2.Email and table1.Id<table2.Id
+
+DELETE p1 
+FROM Person p1,Person p2
+WHERE p1.Email = p2.Email AND p1.Id > p2.Id
