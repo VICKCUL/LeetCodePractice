@@ -1,0 +1,6 @@
+select distinct table1.Num as ConsecutiveNums
+from Logs as table1 inner join Logs as table2
+on table1.Id = table2.Id+1 and table1.Num = table2.Num
+inner join Logs as table3
+on table2.Id = table3.Id+1 and table2.Num = table3.Num
+
