@@ -1,3 +1,4 @@
+# use of group by
 Select Email from Person
 Group by Email
 Having count(Email)>1
