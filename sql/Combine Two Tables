@@ -1,3 +1,4 @@
+# use Left Join for Two tables
 Select FirstName, LastName, City, State
 From Person Left Join Address
 On Address.PersonID = Person.PersonID;
