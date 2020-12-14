@@ -1,0 +1,3 @@
+Select table1.Name as Employee
+From Employee As table1 inner join Employee As table2
+On table1.ManagerId = table2.Id and table1.Salary>table2.Salary
