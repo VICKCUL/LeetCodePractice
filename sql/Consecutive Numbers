@@ -1,3 +1,4 @@
+# make many copies of the original table, and find ways to count
 select distinct table1.Num as ConsecutiveNums
 from Logs as table1 inner join Logs as table2
 on table1.Id = table2.Id+1 and table1.Num = table2.Num
