@@ -1,0 +1,4 @@
+Select table1.id 
+# From Weather as table1 join Weather as table2
+From Weather as table1, Weather as table2
+Where datediff(table1.recordDate,table2.recordDate)=1. and table1.Temperature > table2.temperature
