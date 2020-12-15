@@ -1,0 +1,8 @@
+Select distinct table1.player_id, table2.device_id
+From(
+    Select player_id, min(event_date) as first_login
+    From Activity
+    Group by player_id) As table1
+# upnow it's from game paly analysis I, below is to get the device_id matched.    
+inner join Activity as table2
+On table1.player_id = table2.player_id and table1.first_login = table2.event_date
